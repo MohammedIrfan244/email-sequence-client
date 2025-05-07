@@ -27,7 +27,7 @@ const RegisterForm = () => {
     { setSubmitting, setErrors }: import('formik').FormikHelpers<typeof initialValues>
   ) => {
     try {
-      const res = await axios.post(`${import.meta.env.VITE_API_ENDPOINT}/auth/register`, values);
+      const res = await axios.post(`${import.meta.env.VITE_API_URL}/auth/register`, values);
       console.log(res.data);
       navigate('/login');
     } catch (err: unknown) {

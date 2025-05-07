@@ -27,7 +27,7 @@ const LoginForm = () => {
     { setSubmitting, setErrors }: import('formik').FormikHelpers<typeof initialValues>
   ) => {
     try {
-      const res = await axios.post(`${import.meta.env.VITE_API_ENDPOINT}/auth/login`, values);
+      const res = await axios.post(`${import.meta.env.VITE_API_URL}/auth/login`, values);
       const token = res.data.token;
       if (!token) throw new Error('Token missing in response');
 
