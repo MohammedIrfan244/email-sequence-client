@@ -21,8 +21,7 @@ interface IFlowProp {
 }
 
 function xWidth() {
-    const screenWidth = window.innerWidth; 
-    console.log((4 / 9) * screenWidth)
+    const screenWidth = window.innerWidth;
     return (2 / 9) * screenWidth-95;
   }
 

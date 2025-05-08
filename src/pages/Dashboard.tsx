@@ -16,6 +16,17 @@ function Dashboard() {
   const [flows, setFlows] = useState<IFlow[]>([]);
   const [selectedFlow,setSelectedFlow] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
+  const [createMode,setCreateMode]=useState<boolean>(true)
+
+
+  const handleCreate =()=>{
+    if(createMode){
+      return
+    }else{
+      setCreateMode(true)
+    }
+  }
+
   const fetchFlows = async () => {
     setLoading(true)
     try{
@@ -29,6 +40,8 @@ function Dashboard() {
   }
   const handleFlowClick = async(id: string) => {
     setSelectedFlow(id)
+    setCreateMode(false)
+    console.log(createMode)
   }
   useEffect(()=>{
     fetchFlows()
@@ -43,8 +56,8 @@ function Dashboard() {
         <button>Save and Schedule</button>
       </div>
       <div className="flex flex-1 gap-5">
-      <Flowchart id={selectedFlow}/>
-      <FlowList loading={loading} flows={flows} key={selectedFlow} onClick={handleFlowClick}/>
+      <Flowchart createMode={createMode} id={selectedFlow}/>
+      <FlowList createMode={createMode} onCreate={handleCreate}  loading={loading} flows={flows} key={selectedFlow} onClick={handleFlowClick}/>
       </div>
     </div>
   );
